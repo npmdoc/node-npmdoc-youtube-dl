@@ -1,0 +1,437 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/fent/node-youtube-dl"
+
+    >youtube-dl (v1.11.1)</a>
+</h1>
+<h4>youtube-dl driver for node</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.youtube-dl">module youtube-dl</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.youtube-dl.exec">
+            function <span class="apidocSignatureSpan">youtube-dl.</span>exec
+            <span class="apidocSignatureSpan">(url, args, options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.youtube-dl.getExtractors">
+            function <span class="apidocSignatureSpan">youtube-dl.</span>getExtractors
+            <span class="apidocSignatureSpan">(descriptions, options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.youtube-dl.getFormats">
+            function <span class="apidocSignatureSpan">youtube-dl.</span>getFormats
+            <span class="apidocSignatureSpan">(url, args, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.youtube-dl.getInfo">
+            function <span class="apidocSignatureSpan">youtube-dl.</span>getInfo
+            <span class="apidocSignatureSpan">(url, args, options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.youtube-dl.getSubs">
+            function <span class="apidocSignatureSpan">youtube-dl.</span>getSubs
+            <span class="apidocSignatureSpan">(url, options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">youtube-dl.</span>util</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.youtube-dl.util">module youtube-dl.util</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.youtube-dl.util.formatDuration">
+            function <span class="apidocSignatureSpan">youtube-dl.util.</span>formatDuration
+            <span class="apidocSignatureSpan">(seconds)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.youtube-dl.util.parseOpts">
+            function <span class="apidocSignatureSpan">youtube-dl.util.</span>parseOpts
+            <span class="apidocSignatureSpan">(args)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.youtube-dl" id="apidoc.module.youtube-dl">module youtube-dl</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.youtube-dl.exec" id="apidoc.element.youtube-dl.exec">
+        function <span class="apidocSignatureSpan">youtube-dl.</span>exec
+        <span class="apidocSignatureSpan">(url, args, options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function exec(url, args, options, callback) {
+  &#x27;use strict&#x27;;
+  return call(url, [], args, options, callback);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+24video
+3sat
+```
+
+### Call the `youtube-dl` binary directly
+This module doesn&#x27;t have `youtube-dl` download the video. Instead, it uses the `url` key from the `--dump-json` CLI option
+to create a node stream. That way, it can be used like any other node stream.
+
+If that, or none of the above support your use case, you can use `ytdl.<span class="apidocCodeKeywordSpan">exec</span>()` to call
+ `youtube-dl` however you like.
+
+``` js
+ytdl.exec(url, [&#x27;-x&#x27;, &#x27;--audio-format&#x27;, &#x27;mp3&#x27;], {}, function(err, output) {
+  if (err) throw err;
+  console.log(output.join(&#x27;\n&#x27;));
+});
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.youtube-dl.getExtractors" id="apidoc.element.youtube-dl.getExtractors">
+        function <span class="apidocSignatureSpan">youtube-dl.</span>getExtractors
+        <span class="apidocSignatureSpan">(descriptions, options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function getExtractors(descriptions, options, callback) {
+  &#x27;use strict&#x27;;
+  if (typeof options === &#x27;function&#x27;) {
+    callback = options;
+    options = {};
+  } else if (typeof descriptions === &#x27;function&#x27;) {
+    callback = descriptions;
+    options = {};
+    descriptions = false;
+  }
+
+  var args = descriptions ?
+    [&#x27;--extractor-descriptions&#x27;] : [&#x27;--list-extractors&#x27;];
+  call(null, args, null, options, callback);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+```
+
+### Getting the list of extractors
+
+``` js
+var youtubedl = require(&#x27;youtube-dl&#x27;);
+youtubedl.<span class="apidocCodeKeywordSpan">getExtractors</span>(true, function(err, list) {
+  console.log(&#x27;Found &#x27; + list.length + &#x27; extractors&#x27;);
+  for (var i = 0; i &#x3c; list.length; i++) {
+    console.log(list[i]);
+  }
+});
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.youtube-dl.getFormats" id="apidoc.element.youtube-dl.getFormats">
+        function <span class="apidocSignatureSpan">youtube-dl.</span>getFormats
+        <span class="apidocSignatureSpan">(url, args, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function getFormats(url, args, callback) {
+  &#x27;use strict&#x27;;
+  console.warn(&#x27;`getFormats()` is deprecated. Please use `getInfo()`&#x27;);
+
+  if (typeof args === &#x27;function&#x27;) {
+    callback = args;
+    args = [];
+  }
+
+  ytdl.getInfo(url, args, {}, function done(err, video_info) {
+    if (err) { return callback(err); }
+
+    var formats_info = video_info.formats || [video_info];
+    var formats = formats_info.map(function mapIt(format) {
+        return {
+          id: video_info.id,
+          itag: format.format_id,
+          filetype: format.ext,
+          resolution: format.format.split(&#x27; - &#x27;)[1].split(&#x27; (&#x27;)[0],
+        };
+    });
+
+    callback(null, formats);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.youtube-dl.getInfo" id="apidoc.element.youtube-dl.getInfo">
+        function <span class="apidocSignatureSpan">youtube-dl.</span>getInfo
+        <span class="apidocSignatureSpan">(url, args, options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function getInfo(url, args, options, callback) {
+  &#x27;use strict&#x27;;
+  if (typeof options === &#x27;function&#x27;) {
+    callback = options;
+    options = {};
+  } else if (typeof args === &#x27;function&#x27;) {
+    callback = args;
+    options = {};
+    args = [];
+  }
+  var defaultArgs = [&#x27;--dump-json&#x27;];
+  if (!args || args.indexOf(&#x27;-f&#x27;) &#x3c; 0 &#x26;&#x26; args.indexOf(&#x27;--format&#x27;) &#x3c; 0 &#x26;&#x26;
+      args.every(function(a) {
+        return a.indexOf(&#x27;--format=&#x27;) !== 0;
+      })) {
+    defaultArgs.push(&#x27;-f&#x27;);
+    defaultArgs.push(&#x27;best&#x27;);
+  }
+
+  call(url, defaultArgs, args, options, function done(err, data) {
+    if (err) { return callback(err); }
+    var info;
+    try {
+      info = data.map(parseInfo);
+    } catch (err) {
+      return callback(err);
+    }
+
+    callback(null, info.length === 1 ? info[0] : info);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+### Getting video information
+
+``` js
+var youtubedl = require(&#x27;youtube-dl&#x27;);
+var url = &#x27;http://www.youtube.com/watch?v=WKsjaOqDXgg&#x27;;
+// Optional arguments passed to youtube-dl.
+var options = [&#x27;--username=user&#x27;, &#x27;--password=hunter2&#x27;];
+youtubedl.<span class="apidocCodeKeywordSpan">getInfo</span>(url, options, function(err, info) {
+if (err) throw err;
+
+console.log(&#x27;id:&#x27;, info.id);
+console.log(&#x27;title:&#x27;, info.title);
+console.log(&#x27;url:&#x27;, info.url);
+console.log(&#x27;thumbnail:&#x27;, info.thumbnail);
+console.log(&#x27;description:&#x27;, info.description);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.youtube-dl.getSubs" id="apidoc.element.youtube-dl.getSubs">
+        function <span class="apidocSignatureSpan">youtube-dl.</span>getSubs
+        <span class="apidocSignatureSpan">(url, options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function getSubs(url, options, callback) {
+  &#x27;use strict&#x27;;
+  if (typeof options === &#x27;function&#x27;) {
+    callback = options;
+    options = {};
+  }
+
+  var args = [&#x27;--skip-download&#x27;];
+  args.push(&#x27;--write&#x27; + (options.auto ? &#x27;-auto&#x27; : &#x27;&#x27;) + &#x27;-sub&#x27;);
+  if (options.all) {
+    args.push(&#x27;--all-subs&#x27;);
+  }
+  if (options.lang) {
+    args.push(&#x27;--sub-lang=&#x27; + options.lang);
+  }
+  if (!options.warrning) {
+    args.push(&#x27;--no-warnings&#x27;);
+  }
+
+  call(url, args, [], { cwd: options.cwd }, function(err, data) {
+    if (err) { return callback(err); }
+
+    var files = [];
+    for (var i = 0, len = data.length; i &#x3c; len; i++) {
+      var line = data[i];
+      if (line.indexOf(&#x27;[info] Writing video subtitles to: &#x27;) === 0) {
+        files.push(line.slice(35));
+      }
+    }
+    callback(null, files);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  // Downloads all the available subtitles.
+  all: false,
+  // Languages of subtitles to download, separated by commas.
+  lang: &#x27;en&#x27;,
+  // The directory to save the downloaded files in.
+  cwd: __dirname,
+};
+youtubedl.<span class="apidocCodeKeywordSpan">getSubs</span>(url, options, function(err, files) {
+  if (err) throw err;
+
+  console.log(&#x27;subtitle files downloaded:&#x27;, files);
+});
+```
+
+For more usage info on youtube-dl and the arguments you can pass to it, do `youtube-dl -h` or go to the [youtube-dl documentation
+][].
+...</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.youtube-dl.util" id="apidoc.module.youtube-dl.util">module youtube-dl.util</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.youtube-dl.util.formatDuration" id="apidoc.element.youtube-dl.util.formatDuration">
+        function <span class="apidocSignatureSpan">youtube-dl.util.</span>formatDuration
+        <span class="apidocSignatureSpan">(seconds)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">formatDuration = function (seconds) {
+  var parts = [];
+  parts.push(seconds % 60);
+  var minutes = Math.floor(seconds / 60);
+  if (minutes &#x3e; 0) {
+    parts.push(minutes % 60);
+    var hours = Math.floor(minutes / 60);
+    if (hours &#x3e; 0) {
+        parts.push(hours);
+    }
+  }
+  return parts.reverse().join(&#x27;:&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.youtube-dl.util.parseOpts" id="apidoc.element.youtube-dl.util.parseOpts">
+        function <span class="apidocSignatureSpan">youtube-dl.util.</span>parseOpts
+        <span class="apidocSignatureSpan">(args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseOpts = function (args) {
+  var pos;
+  for (var i = 0, len = badArgs.length; i &#x3c; len; i++) {
+    if ((pos = args.indexOf(badArgs[i])) !== -1) {
+      args.splice(pos, 1);
+    }
+  }
+  return args;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
