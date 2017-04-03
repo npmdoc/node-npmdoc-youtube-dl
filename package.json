@@ -1,17 +1,40 @@
 {
-    "buildNpmdoc":"youtube-dl",
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "buildNpmdoc": "youtube-dl",
+    "description": "api documentation for [youtube-dl (v1.11.1)](https://github.com/fent/node-youtube-dl) [![npm package](https://img.shields.io/npm/v/npmdoc-youtube-dl.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-youtube-dl) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-youtube-dl.svg)](https://travis-ci.org/npmdoc/node-npmdoc-youtube-dl)",
     "devDependencies": {
-        "youtube-dl": "*",
         "electron-lite": "kaizhu256/node-electron-lite#alpha",
-        "utility2": "kaizhu256/node-utility2#alpha"
+        "utility2": "kaizhu256/node-utility2#alpha",
+        "youtube-dl": "*"
     },
-    "name":"npmdoc-youtube-dl",
+    "engines": {
+        "node": ">=4.0"
+    },
+    "homepage": "https://github.com/npmdoc/node-npmdoc-youtube-dl",
+    "keywords": [
+        "documentation",
+        "youtube-dl"
+    ],
+    "license": "MIT",
+    "main": "lib.npmdoc_youtube_dl.js",
+    "name": "npmdoc-youtube-dl",
+    "nameAlias": "npmdoc_youtube_dl",
+    "nameOriginal": "npmdoc-youtube-dl",
+    "os": [
+        "darwin",
+        "linux"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/npmdoc/node-npmdoc-youtube-dl.git"
     },
     "scripts": {
-        "build-ci": "utility2 shReadmeTest build_ci.sh"
+        "build-ci": "utility2 shReadmeTest build_ci.sh",
+        "env": "env",
+        "heroku-postbuild": "(set -e; npm install \"kaizhu256/node-utility2#alpha\"; utility2 shDeployHeroku)",
+        "postinstall": "if [ -f npm_scripts.sh ]; then ./npm_scripts.sh postinstall; fi",
+        "start": "(set -e; export PORT=${PORT:-8080}; utility2 start test.js)",
+        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
     },
     "version": "0.0.1"
 }
