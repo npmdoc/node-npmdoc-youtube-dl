@@ -65,15 +65,6 @@
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.element.youtube-dl.downloader">
-            function <span class="apidocSignatureSpan">youtube-dl.</span>downloader
-            <span class="apidocSignatureSpan">(binDir, callback)</span>
-            </a>
-
-        </li>
-
-        <li>
-
             <a class="apidocElementLiA" href="#apidoc.element.youtube-dl.exec">
             function <span class="apidocSignatureSpan">youtube-dl.</span>exec
             <span class="apidocSignatureSpan">(url, args, options, callback)</span>
@@ -119,116 +110,7 @@
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.element.youtube-dl.toString">
-            function <span class="apidocSignatureSpan">youtube-dl.</span>toString
-            <span class="apidocSignatureSpan">()</span>
-            </a>
-
-        </li>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.youtube-dl.youtube_dl">
-            function <span class="apidocSignatureSpan">youtube-dl.</span>youtube_dl
-            <span class="apidocSignatureSpan">(videoUrl, args, options)</span>
-            </a>
-
-        </li>
-
-        <li>
-
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">youtube-dl.</span>util</span>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.youtube-dl.downloader">module youtube-dl.downloader</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.youtube-dl.downloader.downloader">
-            function <span class="apidocSignatureSpan">youtube-dl.</span>downloader
-            <span class="apidocSignatureSpan">(binDir, callback)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.youtube-dl.exec">module youtube-dl.exec</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.youtube-dl.exec.exec">
-            function <span class="apidocSignatureSpan">youtube-dl.</span>exec
-            <span class="apidocSignatureSpan">(url, args, options, callback)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.youtube-dl.getExtractors">module youtube-dl.getExtractors</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.youtube-dl.getExtractors.getExtractors">
-            function <span class="apidocSignatureSpan">youtube-dl.</span>getExtractors
-            <span class="apidocSignatureSpan">(descriptions, options, callback)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.youtube-dl.getFormats">module youtube-dl.getFormats</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.youtube-dl.getFormats.getFormats">
-            function <span class="apidocSignatureSpan">youtube-dl.</span>getFormats
-            <span class="apidocSignatureSpan">(url, args, callback)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.youtube-dl.getInfo">module youtube-dl.getInfo</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.youtube-dl.getInfo.getInfo">
-            function <span class="apidocSignatureSpan">youtube-dl.</span>getInfo
-            <span class="apidocSignatureSpan">(url, args, options, callback)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.youtube-dl.getSubs">module youtube-dl.getSubs</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.youtube-dl.getSubs.getSubs">
-            function <span class="apidocSignatureSpan">youtube-dl.</span>getSubs
-            <span class="apidocSignatureSpan">(url, options, callback)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.youtube-dl.toString">module youtube-dl.toString</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.youtube-dl.toString.toString">
-            function <span class="apidocSignatureSpan">youtube-dl.</span>toString
-            <span class="apidocSignatureSpan">()</span>
-            </a>
 
         </li>
 
@@ -289,58 +171,6 @@
   });
 
   return stream;
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.element.youtube-dl.downloader" id="apidoc.element.youtube-dl.downloader">
-        function <span class="apidocSignatureSpan">youtube-dl.</span>downloader
-        <span class="apidocSignatureSpan">(binDir, callback)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function downloader(binDir, callback) {
-
-  'use strict';
-  if (typeof binDir === 'function') {
-    callback = binDir;
-    binDir = null;
-  }
-
-  createBase(binDir);
-
-  request.get(url, function get(err, res, body) {
-
-    if (err || res.statusCode !== 200) { return callback(err || new Error('Response Error: ' + res.statusCode)); }
-
-    var m = regexp.exec(body);
-
-    if (!m) { return callback(new Error('Could not find download link in ' + url)); }
-
-    // Check if there is a new version available.
-    var newVersion = m[1];
-
-    var details = fs.existsSync(defaultPath) &amp;&amp; fs.readFileSync(defaultPath, 'utf8');
-
-    if (details) { details = JSON.parse(details); }
-
-    if (newVersion === details.version &amp;&amp; fs.existsSync(details.path)) { return callback(null, 'Already up to date ' + newVersion
-); }
-
-    var link = exec(m[0]);
-
-    download(link, function error(err) {
-      if (err) { return callback(err); }
-      fs.writeFileSync(defaultPath, JSON.stringify({version: newVersion, path: ((binDir) ? filePath : binDir), exec: exec('youtube
--dl')}), 'utf8');
-      callback(null, 'Downloaded youtube-dl ' + newVersion);
-    });
-
-  });
-
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -455,7 +285,23 @@ youtubedl.<span class="apidocCodeKeywordSpan">getExtractors</span>(true, functio
     callback(null, formats);
   });
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  'http://www.mixcloud.com/' +
+  'ItchFM/mr-dex-the-dex-files-ep-84/';
+
+vows.describe('getFormats').addBatch({
+  'from a video': {
+'topic': function() {
+  'use strict';
+  ytdl.<span class="apidocCodeKeywordSpan">getFormats</span>(youtubevideo, this.callback);
+},
+
+'formats returned': function(err, formats) {
+  'use strict';
+  assert.isNull(err);
+  assert.isArray(formats);
+}
+...</pre></li>
     </ul>
 
 
@@ -580,387 +426,6 @@ For more usage info on youtube-dl and the arguments you can pass to it, do `yout
 
 
 
-    <h2>
-        <a href="#apidoc.element.youtube-dl.toString" id="apidoc.element.youtube-dl.toString">
-        function <span class="apidocSignatureSpan">youtube-dl.</span>toString
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">toString = function () {
-    return text;
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.element.youtube-dl.youtube_dl" id="apidoc.element.youtube-dl.youtube_dl">
-        function <span class="apidocSignatureSpan">youtube-dl.</span>youtube_dl
-        <span class="apidocSignatureSpan">(videoUrl, args, options)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">youtube_dl = function (videoUrl, args, options) {
-
-  'use strict';
-  var stream = streamify({
-    superCtor: http.ClientResponse,
-    readable: true,
-    writable: false
-  });
-
-  if (typeof videoUrl !== 'string') {
-    processData(videoUrl, options, stream);
-    return stream;
-  }
-
-  ytdl.getInfo(videoUrl, args, options, function getInfo(err, data) {
-    if (err) { return stream.emit('error', err); }
-    processData(data, options, stream);
-  });
-
-  return stream;
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.youtube-dl.downloader" id="apidoc.module.youtube-dl.downloader">module youtube-dl.downloader</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.youtube-dl.downloader.downloader" id="apidoc.element.youtube-dl.downloader.downloader">
-        function <span class="apidocSignatureSpan">youtube-dl.</span>downloader
-        <span class="apidocSignatureSpan">(binDir, callback)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function downloader(binDir, callback) {
-
-  'use strict';
-  if (typeof binDir === 'function') {
-    callback = binDir;
-    binDir = null;
-  }
-
-  createBase(binDir);
-
-  request.get(url, function get(err, res, body) {
-
-    if (err || res.statusCode !== 200) { return callback(err || new Error('Response Error: ' + res.statusCode)); }
-
-    var m = regexp.exec(body);
-
-    if (!m) { return callback(new Error('Could not find download link in ' + url)); }
-
-    // Check if there is a new version available.
-    var newVersion = m[1];
-
-    var details = fs.existsSync(defaultPath) &amp;&amp; fs.readFileSync(defaultPath, 'utf8');
-
-    if (details) { details = JSON.parse(details); }
-
-    if (newVersion === details.version &amp;&amp; fs.existsSync(details.path)) { return callback(null, 'Already up to date ' + newVersion
-); }
-
-    var link = exec(m[0]);
-
-    download(link, function error(err) {
-      if (err) { return callback(err); }
-      fs.writeFileSync(defaultPath, JSON.stringify({version: newVersion, path: ((binDir) ? filePath : binDir), exec: exec('youtube
--dl')}), 'utf8');
-      callback(null, 'Downloaded youtube-dl ' + newVersion);
-    });
-
-  });
-
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.youtube-dl.exec" id="apidoc.module.youtube-dl.exec">module youtube-dl.exec</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.youtube-dl.exec.exec" id="apidoc.element.youtube-dl.exec.exec">
-        function <span class="apidocSignatureSpan">youtube-dl.</span>exec
-        <span class="apidocSignatureSpan">(url, args, options, callback)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function exec(url, args, options, callback) {
-  'use strict';
-  return call(url, [], args, options, callback);
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-24video
-3sat
-```
-
-### Call the `youtube-dl` binary directly
-This module doesn't have `youtube-dl` download the video. Instead, it uses the `url` key from the `--dump-json` CLI option
-to create a node stream. That way, it can be used like any other node stream.
-
-If that, or none of the above support your use case, you can use `ytdl.<span class="apidocCodeKeywordSpan">exec</span>()` to call
- `youtube-dl` however you like.
-
-``` js
-ytdl.exec(url, ['-x', '--audio-format', 'mp3'], {}, function(err, output) {
-  if (err) throw err;
-  console.log(output.join('\n'));
-});
-```
-...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.youtube-dl.getExtractors" id="apidoc.module.youtube-dl.getExtractors">module youtube-dl.getExtractors</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.youtube-dl.getExtractors.getExtractors" id="apidoc.element.youtube-dl.getExtractors.getExtractors">
-        function <span class="apidocSignatureSpan">youtube-dl.</span>getExtractors
-        <span class="apidocSignatureSpan">(descriptions, options, callback)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function getExtractors(descriptions, options, callback) {
-  'use strict';
-  if (typeof options === 'function') {
-    callback = options;
-    options = {};
-  } else if (typeof descriptions === 'function') {
-    callback = descriptions;
-    options = {};
-    descriptions = false;
-  }
-
-  var args = descriptions ?
-    ['--extractor-descriptions'] : ['--list-extractors'];
-  call(null, args, null, options, callback);
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-
-```
-
-### Getting the list of extractors
-
-``` js
-var youtubedl = require('youtube-dl');
-youtubedl.<span class="apidocCodeKeywordSpan">getExtractors</span>(true, function(err, list) {
-  console.log('Found ' + list.length + ' extractors');
-  for (var i = 0; i &lt; list.length; i++) {
-    console.log(list[i]);
-  }
-});
-```
-...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.youtube-dl.getFormats" id="apidoc.module.youtube-dl.getFormats">module youtube-dl.getFormats</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.youtube-dl.getFormats.getFormats" id="apidoc.element.youtube-dl.getFormats.getFormats">
-        function <span class="apidocSignatureSpan">youtube-dl.</span>getFormats
-        <span class="apidocSignatureSpan">(url, args, callback)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function getFormats(url, args, callback) {
-  'use strict';
-  console.warn('`getFormats()` is deprecated. Please use `getInfo()`');
-
-  if (typeof args === 'function') {
-    callback = args;
-    args = [];
-  }
-
-  ytdl.getInfo(url, args, {}, function done(err, video_info) {
-    if (err) { return callback(err); }
-
-    var formats_info = video_info.formats || [video_info];
-    var formats = formats_info.map(function mapIt(format) {
-        return {
-          id: video_info.id,
-          itag: format.format_id,
-          filetype: format.ext,
-          resolution: format.format.split(' - ')[1].split(' (')[0],
-        };
-    });
-
-    callback(null, formats);
-  });
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.youtube-dl.getInfo" id="apidoc.module.youtube-dl.getInfo">module youtube-dl.getInfo</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.youtube-dl.getInfo.getInfo" id="apidoc.element.youtube-dl.getInfo.getInfo">
-        function <span class="apidocSignatureSpan">youtube-dl.</span>getInfo
-        <span class="apidocSignatureSpan">(url, args, options, callback)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function getInfo(url, args, options, callback) {
-  'use strict';
-  if (typeof options === 'function') {
-    callback = options;
-    options = {};
-  } else if (typeof args === 'function') {
-    callback = args;
-    options = {};
-    args = [];
-  }
-  var defaultArgs = ['--dump-json'];
-  if (!args || args.indexOf('-f') &lt; 0 &amp;&amp; args.indexOf('--format') &lt; 0 &amp;&amp;
-      args.every(function(a) {
-        return a.indexOf('--format=') !== 0;
-      })) {
-    defaultArgs.push('-f');
-    defaultArgs.push('best');
-  }
-
-  call(url, defaultArgs, args, options, function done(err, data) {
-    if (err) { return callback(err); }
-    var info;
-    try {
-      info = data.map(parseInfo);
-    } catch (err) {
-      return callback(err);
-    }
-
-    callback(null, info.length === 1 ? info[0] : info);
-  });
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-### Getting video information
-
-``` js
-var youtubedl = require('youtube-dl');
-var url = 'http://www.youtube.com/watch?v=WKsjaOqDXgg';
-// Optional arguments passed to youtube-dl.
-var options = ['--username=user', '--password=hunter2'];
-youtubedl.<span class="apidocCodeKeywordSpan">getInfo</span>(url, options, function(err, info) {
-if (err) throw err;
-
-console.log('id:', info.id);
-console.log('title:', info.title);
-console.log('url:', info.url);
-console.log('thumbnail:', info.thumbnail);
-console.log('description:', info.description);
-...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.youtube-dl.getSubs" id="apidoc.module.youtube-dl.getSubs">module youtube-dl.getSubs</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.youtube-dl.getSubs.getSubs" id="apidoc.element.youtube-dl.getSubs.getSubs">
-        function <span class="apidocSignatureSpan">youtube-dl.</span>getSubs
-        <span class="apidocSignatureSpan">(url, options, callback)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function getSubs(url, options, callback) {
-  'use strict';
-  if (typeof options === 'function') {
-    callback = options;
-    options = {};
-  }
-
-  var args = ['--skip-download'];
-  args.push('--write' + (options.auto ? '-auto' : '') + '-sub');
-  if (options.all) {
-    args.push('--all-subs');
-  }
-  if (options.lang) {
-    args.push('--sub-lang=' + options.lang);
-  }
-  if (!options.warrning) {
-    args.push('--no-warnings');
-  }
-
-  call(url, args, [], { cwd: options.cwd }, function(err, data) {
-    if (err) { return callback(err); }
-
-    var files = [];
-    for (var i = 0, len = data.length; i &lt; len; i++) {
-      var line = data[i];
-      if (line.indexOf('[info] Writing video subtitles to: ') === 0) {
-        files.push(line.slice(35));
-      }
-    }
-    callback(null, files);
-  });
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-  // Downloads all the available subtitles.
-  all: false,
-  // Languages of subtitles to download, separated by commas.
-  lang: 'en',
-  // The directory to save the downloaded files in.
-  cwd: __dirname,
-};
-youtubedl.<span class="apidocCodeKeywordSpan">getSubs</span>(url, options, function(err, files) {
-  if (err) throw err;
-
-  console.log('subtitle files downloaded:', files);
-});
-```
-
-For more usage info on youtube-dl and the arguments you can pass to it, do `youtube-dl -h` or go to the [youtube-dl documentation
-][].
-...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.youtube-dl.toString" id="apidoc.module.youtube-dl.toString">module youtube-dl.toString</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.youtube-dl.toString.toString" id="apidoc.element.youtube-dl.toString.toString">
-        function <span class="apidocSignatureSpan">youtube-dl.</span>toString
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function toString() { [native code] }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
 
 </div>
 
@@ -988,7 +453,23 @@ For more usage info on youtube-dl and the arguments you can pass to it, do `yout
   }
   return parts.reverse().join(':');
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ });
+ Object.defineProperty(info, 'resolution', {
+   get: function get() {
+     console.warn('`info.resolution` is deprecated, use `info.format`');
+     return info.format.split(' - ')[1];
+   }
+ });
+ info.duration = util.<span class="apidocCodeKeywordSpan">formatDuration</span>(info.duration);
+ return info;
+}
+
+
+/**
+* Gets info from a video.
+*
+...</pre></li>
     </ul>
 
 
@@ -1009,7 +490,23 @@ For more usage info on youtube-dl and the arguments you can pass to it, do `yout
   }
   return args;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * @param {Function(!Error, String)} callback
+ */
+function call(urls, args1, args2, options, callback) {
+'use strict';
+var args = args1;
+var passOver = false;
+if (args2) {
+  args = args.concat(util.<span class="apidocCodeKeywordSpan">parseOpts</span>(args2));
+}
+options = options || {};
+
+if (urls !== null) {
+  if (typeof urls === 'string') {
+    urls = [urls];
+  }
+...</pre></li>
     </ul>
 
 
