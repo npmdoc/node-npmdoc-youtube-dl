@@ -1,4 +1,7 @@
-# api documentation for  [youtube-dl (v1.11.1)](https://github.com/fent/node-youtube-dl)  [![npm package](https://img.shields.io/npm/v/npmdoc-youtube-dl.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-youtube-dl) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-youtube-dl.svg)](https://travis-ci.org/npmdoc/node-npmdoc-youtube-dl)
+# npmdoc-youtube-dl
+
+#### basic api documentation for  [youtube-dl (v1.11.1)](https://github.com/fent/node-youtube-dl)  [![npm package](https://img.shields.io/npm/v/npmdoc-youtube-dl.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-youtube-dl) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-youtube-dl.svg)](https://travis-ci.org/npmdoc/node-npmdoc-youtube-dl)
+
 #### youtube-dl driver for node
 
 [![NPM](https://nodei.co/npm/youtube-dl.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/youtube-dl)
@@ -75,7 +78,8 @@
         "test": "vows ./test/*.js --spec",
         "update": "node ./scripts/download.js"
     },
-    "version": "1.11.1"
+    "version": "1.11.1",
+    "bin": {}
 }
 ```
 
